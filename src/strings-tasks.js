@@ -20,7 +20,10 @@
  *   getStringLength(undefined) => 0
  */
 function getStringLength(value) {
-  return value.length;
+  if (typeof value === 'string') {
+    return value.length;
+  }
+  return 0;
 }
 
 /**
@@ -38,10 +41,7 @@ function getStringLength(value) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  if (typeof value === 'string') {
-    return true;
-  }
-  return false;
+  return typeof value === 'string' || value instanceof String;
 }
 
 /**
@@ -185,12 +185,14 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes() => 0
  */
 function sumOfCodes(str) {
-  let sum = 0;
+  /* let sum = 0;
   for (let i = 0; i < str.length; i += 1) {
     sum += str.charCodeAt(i);
   }
-  return sum;
+  return sum; */
+  return str.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
 }
+
 /**
  * Checks if a string starts with a specific substring.
  *
